@@ -31,7 +31,7 @@ test('testRadioButtonAndCheckBox', async ({page})=>{
 });
 
 
-test.only('testNewWindoHandle', async ({browser})=>{
+test('testNewWindoHandle', async ({browser})=>{
  const context = await browser.newContext();
  const page =  await context.newPage();
   await page.goto("https://rahulshettyacademy.com/loginpagePractise");
