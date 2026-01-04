@@ -1,4 +1,5 @@
 import {test,expect, Locator} from '@playwright/test';
+import path from 'path';
 
 test('Task 103', async ({page})=>{
     await page.goto(" https://www.tutorialspoint.com/selenium/practice/text-box.php");
@@ -64,3 +65,51 @@ test('Task 106', async ({browser})=>{
 
 
 });
+
+test('Task 107', async ({page})=>{
+    await page.goto(" https://www.tutorialspoint.com/selenium/practice/text-box.php");
+    const uploadButton = page.locator("a[href='upload-download.php']");
+    await uploadButton.click();
+    //uplaod file
+    await page.locator('#uploadFile').setInputFiles(path.join('screenShots', 'dummy.pdf'));
+    await page.screenshot({path : 'screenShots/uploadScreen.png'})
+});
+
+test.only('Task 109', async ({page})=>{
+    await page.goto(" https://www.tutorialspoint.com/selenium/practice/text-box.php");
+    
+    await page.locator(".svg-inline--fa.fa-rectangle-list.toc-icons").click();
+    await page.locator("a[href='selenium_automation_practice.php']").click();
+    // await page.getByPlaceholder('First Name').fill('Test First Name');
+    // await page.getByPlaceholder('name@example.com').fill('playwright@microsoft.com');
+    // await page.locator("//input[@id='gender']").click();
+    // await page.getByPlaceholder('Enter Mobile Number').fill('0123456789');
+    await page.locator("#dob").click();
+    const dob = page.locator('#dob');
+//////////////this code was generating by Ai, if there is an easier way, good to know!
+const date = new Date();
+const today = date.getDate();
+date.setMonth(date.getMonth() - 2);
+date.setDate(today); 
+const yyyy = date.getFullYear();
+const mm = String(date.getMonth() + 1).padStart(2, '0');
+const dd = String(date.getDate()).padStart(2, '0');
+
+await dob.fill(`${yyyy}-${mm}-${dd}`);
+await expect(dob).toHaveValue(`${yyyy}-${mm}-${dd}`);
+///////////////////////////////////////////////////////////////
+// await page.getByPlaceholder('Enter Subject').fill('test Subject');
+const checkBoxes  = page.locator("input.form-check-input[type='checkbox']");
+for(let i = 0; i < await checkBoxes.count(); i++ ){
+    await checkBoxes.nth(i).check();
+}
+await page.locator('#picture').first().setInputFiles(path.join('screenShots', 'formScreen.png'));
+await page.getByRole("button", {name:"Login"}).click();
+// await page.getByPlaceholder('Currend Address').fill('test Current Address');
+// await page.locator("#state").selectOption("NCR");
+// await page.locator("#city").selectOption("Agra");
+await page.screenshot({path : 'screenShots/registerationScreen.png'});
+});
+
+
+
