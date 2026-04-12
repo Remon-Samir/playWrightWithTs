@@ -1,5 +1,4 @@
 import {test,expect, Locator} from '@playwright/test';
-import { assert } from 'console';
 import path from 'path';
 
 test('Task 103', async ({page})=>{
@@ -91,7 +90,7 @@ test('Task 107', async ({page})=>{
     await page.screenshot({path : 'screenShots/uploadScreen.png'})
 });
 
-test.only('Task 108', async ({page})=>{
+test('Task 108', async ({page})=>{
     await page.goto(" https://www.tutorialspoint.com/selenium/practice/text-box.php");
     const dyanamicPropertyButton : Locator = page.locator("a[href='dynamic-prop.php']");
     await dyanamicPropertyButton.click();
