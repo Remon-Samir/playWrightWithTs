@@ -44,7 +44,7 @@ test("task 207" , async ({page}) =>{
  await Utils.takeScreenShot(bankingPage.page , "bankingPageAfterTransactions");
 })
 
-test.only('task208' , async({page}) =>{
+test('task208' , async({page}) =>{
     way2AutomationHomePage = new Way2AutomationHomePage(page);
     await way2AutomationHomePage.OpenHomePage();
     const bankingPage = await way2AutomationHomePage.clickOnBankingCard();
